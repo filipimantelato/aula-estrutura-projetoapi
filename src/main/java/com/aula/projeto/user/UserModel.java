@@ -13,6 +13,9 @@ import lombok.Data;
 @Entity(name = "tb_user") //gera banco de dados com nome
 public class UserModel {
 
+    public UserModel() {
+    }
+
     //as anotacoes @ so servem para o atributo abaixo da linha    
     @Id
     @GeneratedValue(generator = "UUID") //igual ao auto_increment
@@ -26,5 +29,4 @@ public class UserModel {
     private String telefone;
     private String senha;
 
-    
 }
