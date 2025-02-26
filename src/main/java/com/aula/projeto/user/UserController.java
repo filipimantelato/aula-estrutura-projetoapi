@@ -19,7 +19,7 @@ public class UserController {
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public UserModel criar(@RequestBody UserModel userModel){
-        return this.userRepository.save(userModel);
+            return this.userRepository.save(userModel);
     }
 
     //@PostMapping
