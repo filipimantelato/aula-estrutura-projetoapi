@@ -45,13 +45,33 @@ public class InfoModel {
         this.nacionalidade = nacionalidade;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
     @Id
     @GeneratedValue(generator = "UUID") //igual ao auto_increment
     private UUID id;
 
+    private String username;
     private int idade;
     private int altura;
 
     @Nonnull
     private String nacionalidade;
+
+    @Column(name = "endereco", length = 255)
+    private String endereco;
 }
