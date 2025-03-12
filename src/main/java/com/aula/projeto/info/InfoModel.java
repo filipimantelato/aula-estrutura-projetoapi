@@ -61,11 +61,20 @@ public class InfoModel {
         this.endereco = endereco;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Id
     @GeneratedValue(generator = "UUID") //igual ao auto_increment
     private UUID id;
 
     private String username;
+    private String senha;
     private int idade;
     private int altura;
 

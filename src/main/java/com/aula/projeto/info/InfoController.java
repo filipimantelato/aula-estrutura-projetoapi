@@ -1,5 +1,6 @@
 package com.aula.projeto.info;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.aula.projeto.user.UserModel;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class InfoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já cadastrado");
         }
         else{
-            System.out.println("sistema chegou aki");
+            var criptSenha = BCrypt.withDefaults().hashToString(12, infoModel.getSenha().toCharArray());
+            infoModel.setSenha(criptSenha);
             var criado = this.infoRepository.save(infoModel);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
         }
