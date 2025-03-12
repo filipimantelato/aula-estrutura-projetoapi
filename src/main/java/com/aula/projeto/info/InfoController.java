@@ -1,10 +1,14 @@
 package com.aula.projeto.info;
 
+import com.aula.projeto.user.UserModel;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/info")
@@ -16,9 +20,10 @@ public class InfoController {
         this.infoRepository = infoRepository;
     }
 
-    @GetMapping("/mensagem")
-    public String mensagem(){
-        return "Bem-vindo ao cadastro de pessoas!";
+    @GetMapping("/listar")
+    public List<InfoModel> listarInfo() {
+        List<InfoModel> infocadastradas = infoRepository.findAll();
+        return infocadastradas;
     }
 
     @PostMapping("/criar")
@@ -32,5 +37,17 @@ public class InfoController {
             var criado = this.infoRepository.save(infoModel);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
         }
+    }
+
+    @PutMapping("/atualizar")
+    public ResponseEntity atualizarInfo(@RequestBody InfoModel infoModel){
+        var criado = this.infoRepository.save(infoModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(criado);
+    }
+
+
+    @DeleteMapping("/deletar/{id}")
+    public void deletar(@PathVariable UUID id){
+        infoRepository.deleteById(id);
     }
 }
