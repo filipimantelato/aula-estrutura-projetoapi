@@ -8,4 +8,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface IUserRepository extends JpaRepository<UserModel, UUID>{
+    UserModel findByUsername(String username);
 }
