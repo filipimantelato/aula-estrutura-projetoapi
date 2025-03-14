@@ -34,8 +34,6 @@ public class InfoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já cadastrado");
         }
         else{
-            var criptSenha = BCrypt.withDefaults().hashToString(12, infoModel.getSenha().toCharArray());
-            infoModel.setSenha(criptSenha);
             var criado = this.infoRepository.save(infoModel);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
         }

@@ -15,6 +15,19 @@ public class UserModel {
     public UserModel() {
     }
 
+    //as anotacoes @ so servem para o atributo abaixo da linha
+    @Id
+    @GeneratedValue(generator = "UUID") //igual ao auto_increment
+    private UUID id;
+
+    @Nonnull //nao pode ser nulo
+    private String nome;
+
+    @Column(unique = true) //deixa a coluna username unica
+    private String username;
+    private String telefone;
+    private String senha;
+
     public UUID getId() {
         return id;
     }
@@ -55,18 +68,5 @@ public class UserModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    //as anotacoes @ so servem para o atributo abaixo da linha
-    @Id
-    @GeneratedValue(generator = "UUID") //igual ao auto_increment
-    private UUID id;
-
-    @Nonnull //nao pode ser nulo
-    private String nome;
-
-    @Column(unique = true) //deixa a coluna username unica
-    private String username;
-    private String telefone;
-    private String senha;
 
 }
