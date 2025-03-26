@@ -15,45 +15,46 @@ import java.util.Base64;
 
 @Component
 public class FilterAuth extends OncePerRequestFilter {
+
     @Autowired
     IUserRepository userRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         var authorization = request.getHeader("Authorization");
+        filterChain.doFilter(request, response);
         System.out.println("authorization");
         System.out.println(authorization);
 
 
-        var authcode = authorization.substring("Basic ".length()).trim();
+        var authEncode = authorization.substring("Basic".length()).trim();
         System.out.println("Authorization");
-        System.out.println(authcode);
+        System.out.println(authEncode);
 
-        byte[] authDecoded = Base64.getDecoder().decode(authcode);
+        byte[] authDecoded = Base64.getDecoder().decode(authEncode);
         System.out.println("Authorization");
         System.out.println(authDecoded);
 
-        var AuthString= new String(authDecoded);
-        System.out.println(AuthString);
-        String[] credentials = AuthString.split(":");
+        var authString= new String(authDecoded);
+        System.out.println(authString);
+        String[] credentials = authString.split(":");
         String username = credentials[0];
         String password = credentials[1];
 
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
 
-        var user = userRepository.findByUsername(username);
-
+        var user = this.userRepository.findByUsername(username);
         if (user == null) {
-            response.sendError(401, "Ta errado");
+            response.sendError(401, "Usuário sem autorização!");
         } else {
-            var verificasenha= BCrypt.verifyer().verify(password.toCharArray(), user.getSenha());
-            if (verificasenha.verified){
+            var verificaSenha= BCrypt.verifyer().verify(password.toCharArray(), user.getSenha());
+            if (verificaSenha.verified){
                 filterChain.doFilter(request, response);
             }else {
-                response.sendError(401, "TA errado");
+                response.sendError(401);
             }
         }
     }
 }
+
