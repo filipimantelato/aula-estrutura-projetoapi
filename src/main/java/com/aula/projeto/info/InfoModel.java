@@ -25,6 +25,15 @@ public class InfoModel {
 
     @Column(name = "endereco", length = 255)
     private String endereco;
+    private UUID idUser;
+
+    public UUID getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(UUID idUser) {
+        this.idUser = idUser;
+    }
 
     public UUID getId() {
         return id;

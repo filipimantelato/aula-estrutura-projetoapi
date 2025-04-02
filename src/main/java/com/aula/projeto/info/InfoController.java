@@ -34,6 +34,8 @@ public class InfoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já cadastrado");
         }
         else{
+            var idUser = request.getAttribute("idUser");
+            infoModel.setIdUser((UUID) idUser);
             var criado = this.infoRepository.save(infoModel);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
         }
