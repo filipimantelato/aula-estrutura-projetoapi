@@ -6,24 +6,24 @@ import jakarta.persistence.*;
 
 import java.util.UUID;
 
-@Entity(name = "tb_info")
+@Entity(name = "tb_info") //nome da tabela no banco h2
 public class InfoModel {
 
     public InfoModel() {
     }
 
     @Id
-    @GeneratedValue(generator = "UUID") //igual ao auto_increment
+    @GeneratedValue(generator = "UUID") //igual ao auto_increment, gera valor aleatorio para o id, sem repetir
     private UUID id;
 
     private String username;
     private int idade;
     private int altura;
 
-    @Nonnull
+    @Nonnull //nao nulo
     private String nacionalidade;
 
-    @Column(name = "endereco", length = 255)
+    @Column(name = "endereco", length = 255) //coluna com nome endereco e tamanho 255 max
     private String endereco;
     private UUID idUser;
 
