@@ -9,4 +9,6 @@ import java.util.UUID;
 @Component
 public interface IInfoRepository extends JpaRepository<InfoModel, UUID> {
     InfoModel findByUsername(String username);
+
+    InfoModel findByIdUser(UUID idUser);
 }

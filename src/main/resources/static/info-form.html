@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Informações do Usuário</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Informações do Usuário</h1>
+
+    <div>
+        <p><strong>Nome:</strong> <span id="nomeUser"></span></p>
+        <p><strong>Username:</strong> <span id="usernameUser"></span></p>
+        <p><strong>Telefone:</strong> <span id="telefoneUser"></span></p>
+    </div>
+
+    <form id="formInfo">
+        <input type="hidden" id="id">
+        <input type="hidden" id="idUser">
+
+        <label>Idade:</label>
+        <input type="number" id="idade" required><br>
+
+        <label>Altura (cm):</label>
+        <input type="number" id="altura" required><br>
+
+        <label>Nacionalidade:</label>
+        <input type="text" id="nacionalidade"><br>
+
+        <label>Endereço:</label>
+        <input type="text" id="endereco" required><br>
+
+        <button class="btn-primary type="submit">Salvar Informações</button>
+        <button class="btn-danger" type="button" onclick="window.location.href='index.html'">Voltar</button>
+    </form>
+
+    <script src="js/scriptInfo.js"></script>
+</body>
+</html>

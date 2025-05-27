@@ -64,18 +64,14 @@ public class InfoController {
     }
 
     @PostMapping("/criar")
-    private ResponseEntity criar(@RequestBody InfoModel infoModel, HttpServletRequest request) {
-        var usernameExistente = this.infoRepository.findByUsername(infoModel.getUsername());
-        if(usernameExistente != null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já cadastrado");
+        public ResponseEntity criar(@RequestBody InfoModel infoModel) {
+        var existente = this.infoRepository.findByUsername(infoModel.getUsername());
+        if (existente != null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já possui informações cadastradas");
         }
-        else{
-            var idUser = request.getAttribute("idUser");
-            infoModel.setIdUser((UUID) idUser);
-            var criado = this.infoRepository.save(infoModel);
-            return ResponseEntity.status(HttpStatus.CREATED).body(criado);
-        }
-    }
+        var criado = this.infoRepository.save(infoModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(criado);
+}
 
     @PutMapping("/atualizar")
     public ResponseEntity atualizarInfo(@RequestBody InfoModel infoModel){
@@ -88,4 +84,4 @@ public class InfoController {
     public void deletar(@PathVariable UUID id){
         infoRepository.deleteById(id);
     }
-}
+    }
