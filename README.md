@@ -49,7 +49,7 @@ src/
 │   │   └── FilterAuth.java             # Filtro personalizado para autenticação básica
 │   └── resources/
 │       ├── application.properties      # Configurações do banco e console H2
-│       └── static/                     # (não utilizado neste projeto)
+│       └── static/                     # HTML, CSS e JavaScript
 ├── test/                               # Testes automatizados (não utilizados)
 ```
 ---
